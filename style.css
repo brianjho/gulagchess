@@ -1,0 +1,67 @@
+/* Cell for chessboard */
+.main-chessboard-cell {
+    height: 50px;
+    width: 50px;
+    border: 1.5px solid grey;
+    border-style: inset;
+}
+
+/* Cell for gulag chessboard */
+.gulag-chessboard-cell {
+    height: 50px;
+    width: 50px;
+    border: 1.5px solid grey;
+    border-style: inset;
+}
+
+/* Cell for chessboard */
+.main-chessboard-blackcell {
+    background-color: rgb(118, 150, 86);
+}
+
+/* Cell for gulag chessboard */
+.gulag-chessboard-blackcell {
+    background-color: rgb(81, 81, 81);
+}
+
+/* Cell for chessboard */
+.main-chessboard-whitecell {
+    background-color: rgb(238, 238, 210);
+}
+
+/* Cell for gulag chessboard */
+.gulag-chessboard-whitecell {
+    background-color: rgb(193, 193, 193);
+}
+
+/* Container for a chess piece and move indicator */
+.chess-elements-container {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+/* For inner element items of a cell, like a chess piece. Used for scaling down the items */
+.inner-element-of-cell {
+    height: 45px;
+    width: 45px;
+    display: block;
+    z-index: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 2.5px;
+    left: 2.5px;
+}
+
+.circle {
+    height: 40px;
+    width: 40px;
+    display: block;
+    z-index: 1;
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background-color: #d6ff3382;
+    border-radius: 50%;
+}

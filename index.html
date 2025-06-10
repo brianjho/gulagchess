@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Gulag Chess</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <h1>Gulag Chess</h1>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <button type="button" class="btn btn-primary" onclick=startNewGame()>Start New Game</button>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <table id="main-chessboard"></table>
+            </div>
+            <div class="col-auto">
+                <table id="gulag-chessboard"></table>
+            </div>
+        </div>
+    </div>
+
+    <!-- App JS code -->
+    <script src="app.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Create one chessboard -->
+    <script>
+        function generateChessboardUI(whichChessboard) {
+            $(document).ready(function () {
+                let chessBoard = $('<table id="generated-' + whichChessboard + '-ui"></table>');
+                for (let i = 0; i < 8; i++) {
+                    let row = $('<tr></tr>');
+                    for (let j = 0; j < 8; j++) {
+                        let rowId = String.fromCharCode(('a'.charCodeAt() + j));
+                        let colId = 8 - i;
+                        let boardPositionId = rowId + colId;
+                        let cell = $('<td class="chess-elements-container ' + whichChessboard + '-cell" id=' + boardPositionId + '-' + whichChessboard + '></td>');
+                        if ((i + j) % 2 == 0) {
+                            cell.addClass(whichChessboard + '-whitecell');
+                        } else {
+                            cell.addClass(whichChessboard + '-blackcell');
+                        }
+                        row.append(cell);
+                    }
+                    chessBoard.append(row);
+                }
+                $('#' + whichChessboard + '').children("#generated-" + whichChessboard + "-ui").remove();
+                $('#' + whichChessboard + '').append(chessBoard);
+            });
+        }
+
+        // chessPieceFilename: file path to chess piece asset (e.g. "bishop-black.png")
+        // boardPosition: e.g. "a4"
+        // whichBoard: "main-chessboard" or "gulag-chessboard"
+        function placeChessPiece(chessPieceFilename, boardPosition, whichBoard) {
+            $(document).ready(function () {
+                let piece = $('<img class="inner-element-of-cell" id="chess-piece" src="' + chessPieceFilename + '" onclick=showValidMoves("' + boardPosition + '","' + whichBoard + '")>');
+                $('#' + boardPosition + '-' + whichBoard).append(piece);
+            });
+        }
+
+        function clearChessPiecesUI() {
+            $(document).ready(function () {
+                for (let i = 0; i < 8; i++) {
+                    for (let j = 0; j < 8; j++) {
+                        let rowId = String.fromCharCode(('a'.charCodeAt() + j));
+                        let colId = 8 - i;
+                        let boardPositionId = rowId + colId;
+                        $('#' + boardPositionId + "-main-chessboard" + '').children("#chess-piece").remove();
+                        $('#' + boardPositionId + "-gulag-chessboard" + '').children("#chess-piece").remove();
+                    }
+                }
+            });
+        }
+
+        function clearChessMoveIndicatorsUI() {
+            $(document).ready(function () {
+                for (let i = 0; i < 8; i++) {
+                    for (let j = 0; j < 8; j++) {
+                        let rowId = String.fromCharCode(('a'.charCodeAt() + j));
+                        let colId = 8 - i;
+                        let boardPositionId = rowId + colId;
+                        $('#' + boardPositionId + "-main-chessboard" + '').children("#chess-move-indicator").remove();
+                        $('#' + boardPositionId + "-gulag-chessboard" + '').children("#chess-move-indicator").remove();
+                    }
+                }
+            });
+        }
+
+        function placeSuggestionDots(originalPosition, boardPosition, whichBoard) {
+            $(document).ready(function () {
+                let piece = $('<img class="circle" id="chess-move-indicator" onclick=moveBoardPiece("' + originalPosition + '","' + boardPosition + '","' + whichBoard + '")>');
+                $('#' + boardPosition + '-' + whichBoard).append(piece);
+            });
+        }
+    </script>
+</body>
+
+</html>
