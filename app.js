@@ -397,7 +397,8 @@ class Board {
                 if (this.getPiece(endPosition, "main-chessboard") !== null) {
                     const tempMainBoardPiece = mainBoardList[8 - endNumber][endLetter];
                     mainBoardList[8 - endNumber][endLetter] = gulagBoardList[8 - startNumber][startLetter];
-                    gulagBoardList[8 - startNumber][startLetter] = tempMainBoardPiece;
+                    gulagBoardList[8 - endNumber][endLetter] = tempMainBoardPiece;
+                    gulagBoardList[8 - startNumber][startLetter] = null;
                 } else {
                     mainBoardList[8 - endNumber][endLetter] = gulagBoardList[8 - startNumber][startLetter];
                     gulagBoardList[8 - startNumber][startLetter] = null;
