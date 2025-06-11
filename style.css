@@ -54,14 +54,14 @@
 }
 
 .circle {
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     display: block;
     z-index: 1;
     cursor: pointer;
     position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: #d6ff3389;
+    top: 5px;
+    left: 5px;
+    background-color: #d6ff3382;
     border-radius: 50%;
 }
