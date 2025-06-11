@@ -367,20 +367,29 @@ class Board {
                 if (this.sendToGulag(endPosition)) {
                     mainBoardList[8 - endNumber][endLetter] = mainBoardList[8 - startNumber][startLetter];
                     mainBoardList[8 - startNumber][startLetter] = null;
-                    if (endNumber === 8 && this.getPiece(endPosition, "main-chessboard").getPieceType() === "pawn") {
+                    if (endNumber === 8 && this.getPiece(endPosition, "main-chessboard").getPieceType() === "pawn" && this.getPiece(endPosition, "main-chessboard").getTeam() === "white") {
+                        mainBoardList[8 - endNumber][endLetter] = new GamePiece(this.getPiece(endPosition, "main-chessboard").getTeam(), "queen");
+                    }
+                    if (endNumber === 1 && this.getPiece(endPosition, "main-chessboard").getPieceType() === "pawn" && this.getPiece(endPosition, "main-chessboard").getTeam() === "black") {
                         mainBoardList[8 - endNumber][endLetter] = new GamePiece(this.getPiece(endPosition, "main-chessboard").getTeam(), "queen");
                     }
                 } else {
                     console.log("The piece came back from the gulag! Sending the attacking piece down to the gulag instead.");
                     this.sendFailedAttackerToGulag(startPosition, endPosition);
-                    if (endNumber === 8 && this.getPiece(endPosition, "gulag-chessboard").getPieceType() === "pawn") {
+                    if (endNumber === 8 && this.getPiece(endPosition, "gulag-chessboard").getPieceType() === "pawn" && this.getPiece(endPosition, "gulag-chessboard").getTeam() === "white") {
+                        mainBoardList[8 - endNumber][endLetter] = new GamePiece(this.getPiece(endPosition, "gulag-chessboard").getTeam(), "queen");
+                    }
+                    if (endNumber === 1 && this.getPiece(endPosition, "gulag-chessboard").getPieceType() === "pawn" && this.getPiece(endPosition, "gulag-chessboard").getTeam() === "black") {
                         mainBoardList[8 - endNumber][endLetter] = new GamePiece(this.getPiece(endPosition, "gulag-chessboard").getTeam(), "queen");
                     }
                 }
             } else {
                 mainBoardList[8 - endNumber][endLetter] = mainBoardList[8 - startNumber][startLetter];
                 mainBoardList[8 - startNumber][startLetter] = null;
-                if (endNumber === 8 && this.getPiece(endPosition, whichBoard).getPieceType() === "pawn") {
+                if (endNumber === 8 && this.getPiece(endPosition, whichBoard).getPieceType() === "pawn" && this.getPiece(endPosition, whichBoard).getTeam() === "white") {
+                    mainBoardList[8 - endNumber][endLetter] = new GamePiece(this.getPiece(endPosition, whichBoard).getTeam(), "queen");
+                }
+                if (endNumber === 1 && this.getPiece(endPosition, whichBoard).getPieceType() === "pawn" && this.getPiece(endPosition, whichBoard).getTeam() === "black") {
                     mainBoardList[8 - endNumber][endLetter] = new GamePiece(this.getPiece(endPosition, whichBoard).getTeam(), "queen");
                 }
             }
@@ -403,13 +412,19 @@ class Board {
                     mainBoardList[8 - endNumber][endLetter] = gulagBoardList[8 - startNumber][startLetter];
                     gulagBoardList[8 - startNumber][startLetter] = null;
                 }
-                if (endNumber === 8 && this.getPiece(endPosition, "main-chessboard").getPieceType() === "pawn") {
+                if (endNumber === 8 && this.getPiece(endPosition, "main-chessboard").getPieceType() === "pawn" && this.getPiece(endPosition, "main-chessboard").getTeam() === "white") {
+                    gulagBoardList[8 - endNumber][endLetter] = new GamePiece(this.getPiece(endPosition, "main-chessboard").getTeam(), "queen");
+                }
+                if (endNumber === 1 && this.getPiece(endPosition, "main-chessboard").getPieceType() === "pawn" && this.getPiece(endPosition, "main-chessboard").getTeam() === "black") {
                     gulagBoardList[8 - endNumber][endLetter] = new GamePiece(this.getPiece(endPosition, "main-chessboard").getTeam(), "queen");
                 }
             } else {
                 gulagBoardList[8 - endNumber][endLetter] = gulagBoardList[8 - startNumber][startLetter];
                 gulagBoardList[8 - startNumber][startLetter] = null;
-                if (endNumber === 8 && this.getPiece(endPosition, "gulag-chessboard").getPieceType() === "pawn") {
+                if (endNumber === 8 && this.getPiece(endPosition, "gulag-chessboard").getPieceType() === "pawn" && this.getPiece(endPosition, "gulag-chessboard").getTeam() === "white") {
+                    gulagBoardList[8 - endNumber][endLetter] = new GamePiece(this.getPiece(endPosition, "gulag-chessboard").getTeam(), "queen");
+                }
+                if (endNumber === 1 && this.getPiece(endPosition, "gulag-chessboard").getPieceType() === "pawn" && this.getPiece(endPosition, "gulag-chessboard").getTeam() === "black") {
                     gulagBoardList[8 - endNumber][endLetter] = new GamePiece(this.getPiece(endPosition, "gulag-chessboard").getTeam(), "queen");
                 }
             }
