@@ -413,10 +413,10 @@ class Board {
                     gulagBoardList[8 - startNumber][startLetter] = null;
                 }
                 if (endNumber === 8 && this.getPiece(endPosition, "main-chessboard").getPieceType() === "pawn" && this.getPiece(endPosition, "main-chessboard").getTeam() === "white") {
-                    gulagBoardList[8 - endNumber][endLetter] = new GamePiece(this.getPiece(endPosition, "main-chessboard").getTeam(), "queen");
+                    mainBoardList[8 - endNumber][endLetter] = new GamePiece(this.getPiece(endPosition, "main-chessboard").getTeam(), "queen");
                 }
                 if (endNumber === 1 && this.getPiece(endPosition, "main-chessboard").getPieceType() === "pawn" && this.getPiece(endPosition, "main-chessboard").getTeam() === "black") {
-                    gulagBoardList[8 - endNumber][endLetter] = new GamePiece(this.getPiece(endPosition, "main-chessboard").getTeam(), "queen");
+                    mainBoardList[8 - endNumber][endLetter] = new GamePiece(this.getPiece(endPosition, "main-chessboard").getTeam(), "queen");
                 }
             } else {
                 gulagBoardList[8 - endNumber][endLetter] = gulagBoardList[8 - startNumber][startLetter];
