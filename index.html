@@ -56,6 +56,25 @@
                         } else {
                             cell.addClass(whichChessboard + '-blackcell');
                         }
+                        
+                        // Add drag and drop event handlers
+                        cell.on('dragover', function(e) {
+                            e.preventDefault();
+                        });
+                        
+                        cell.on('drop', function(e) {
+                            e.preventDefault();
+                            const data = JSON.parse(e.originalEvent.dataTransfer.getData('text/plain'));
+                            const originalPosition = data.position;
+                            const originalBoard = data.board;
+                            const targetPosition = boardPositionId;
+                            
+                            // Only allow dropping if there's a valid move indicator
+                            if ($('#' + targetPosition + '-' + whichChessboard).find('#chess-move-indicator').length > 0) {
+                                moveBoardPiece(originalPosition, targetPosition, originalBoard);
+                            }
+                        });
+                        
                         row.append(cell);
                     }
                     chessBoard.append(row);
@@ -70,7 +89,16 @@
         // whichBoard: "main-chessboard" or "gulag-chessboard"
         function placeChessPiece(chessPieceFilename, boardPosition, whichBoard) {
             $(document).ready(function () {
-                let piece = $('<img class="inner-element-of-cell" id="chess-piece" src="' + chessPieceFilename + '" onclick=showValidMoves("' + boardPosition + '","' + whichBoard + '")>');
+                let piece = $('<img class="inner-element-of-cell" id="chess-piece" src="' + chessPieceFilename + '" onclick=showValidMoves("' + boardPosition + '","' + whichBoard + '") draggable="true">');
+                piece.attr('data-position', boardPosition);
+                piece.attr('data-board', whichBoard);
+                piece.on('dragstart', function(e) {
+                    e.originalEvent.dataTransfer.setData('text/plain', JSON.stringify({
+                        position: boardPosition,
+                        board: whichBoard
+                    }));
+                    showValidMoves(boardPosition, whichBoard);
+                });
                 $('#' + boardPosition + '-' + whichBoard).append(piece);
             });
         }

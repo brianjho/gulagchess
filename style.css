@@ -47,10 +47,14 @@
     width: 45px;
     display: block;
     z-index: 0;
-    cursor: pointer;
+    cursor: grab;
     position: absolute;
     top: 2.5px;
     left: 2.5px;
+}
+
+.inner-element-of-cell:active {
+    cursor: grabbing;
 }
 
 .circle {
@@ -64,4 +68,8 @@
     left: 5px;
     background-color: #d6ff3382;
     border-radius: 50%;
+}
+
+.chess-elements-container.drag-over {
+    background-color: rgba(214, 255, 51, 0.3);
 }
