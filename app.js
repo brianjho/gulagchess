@@ -199,28 +199,28 @@ class Board {
                 validMoves.push(String.fromCharCode(currLetter - 2 + 97) + (currNumber + 1));
             }
             // Down-left highest
-            if (currNumber - 1 <= 8 && currLetter - 2 >= 0) {
+            if (currNumber - 1 >= 1 && currLetter - 2 >= 0) {
                 validMoves.push(String.fromCharCode(currLetter - 2 + 97) + (currNumber - 1));
             }
             // Down-left lower
-            if (currNumber - 2 <= 8 && currLetter - 1 >= 0) {
+            if (currNumber - 2 >= 1 && currLetter - 1 >= 0) {
                 validMoves.push(String.fromCharCode(currLetter - 1 + 97) + (currNumber - 2));
             }
             // Up-right highest
-            if (currNumber + 2 <= 8 && currLetter - 1 >= 0) {
-                validMoves.push(String.fromCharCode(currLetter - 1 + 97) + (currNumber + 2));
+            if (currNumber + 2 <= 8 && currLetter + 1 <= 7) {
+                validMoves.push(String.fromCharCode(currLetter + 1 + 97) + (currNumber + 2));
             }
             // Up-right lower
-            if (currNumber + 1 <= 8 && currLetter - 2 >= 0) {
-                validMoves.push(String.fromCharCode(currLetter - 2 + 97) + (currNumber + 1));
+            if (currNumber + 1 <= 8 && currLetter + 2 <= 7) {
+                validMoves.push(String.fromCharCode(currLetter + 2 + 97) + (currNumber + 1));
             }
             // Down-right highest
-            if (currNumber - 1 <= 8 && currLetter - 2 >= 0) {
-                validMoves.push(String.fromCharCode(currLetter - 2 + 97) + (currNumber - 1));
+            if (currNumber - 1 >= 1 && currLetter + 2 <= 7) {
+                validMoves.push(String.fromCharCode(currLetter + 2 + 97) + (currNumber - 1));
             }
             // Down-right lower
-            if (currNumber - 2 <= 8 && currLetter - 1 >= 0) {
-                validMoves.push(String.fromCharCode(currLetter - 1 + 97) + (currNumber - 2));
+            if (currNumber - 2 >= 1 && currLetter + 1 <= 7) {
+                validMoves.push(String.fromCharCode(currLetter + 1 + 97) + (currNumber - 2));
             }
         }
         if (pieceType === "bishop" || pieceType === "queen") {
